@@ -1,0 +1,54 @@
+[build-system]
+requires = ["setuptools", "scikit-build-core"]
+build-backend = "scikit_build_core.build"
+
+
+[project]
+name = "XXXXXX"
+dependencies = ["numpy"]
+description = "XXXXXX is a high-performance library for printing Hello World message."
+version = "0.0.1"
+license = "MIT"
+license-files = ["LICENSE"]
+authors = [{name = "Michał Startek"}]
+readme = "README.md"
+requires-python = ">=3.8"
+classifiers = [
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.6",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Development Status :: 5 - Production/Stable",
+    "Operating System :: OS Independent",
+]
+keywords = ["Hello World", "Example", "Nanobind", "C++", "Python"]
+
+[project.urls]
+Homepage = "https://github.com/michalsta/nanobind_module_skeleton"
+Repository = "https://github.com/michalsta/nanobind_module_skeleton"
+
+
+[project.optional-dependencies]
+testing = ["pytest"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests/Python"]
+
+[tool.cibuildwheel]
+enable = ["pypy"]
+skip = ["cp36-*", "cp37-*", "pp37-*"]
+test-command = "python -m pytest {project}/tests/Python"
+test-extras = ["testing"]
+
+[tool.scikit-build.sdist]
+exclude = ["**/*"]
+include = [
+    "/src/**/*.py",
+    "/src/**/*.c",
+    "/src/**/*.h",
+    "/src/**/*.hpp",
+    "/src/**/*.cpp",
+    "/LICENCE",
+    "/README.md",
+    "/pyproject.toml",
+    "/CMakeLists.txt"
+]
