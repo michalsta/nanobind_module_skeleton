@@ -20,6 +20,12 @@ nanobind_add_module(XXXXXX_ext
     src/XXXXXX/cpp/XXXXXX/hello.cpp
     src/XXXXXX/cpp/XXXXXX/py_exports.cpp)
 
+# Add -Wall -Wextra for Unix-style compilers (GCC/Clang)
+if (CMAKE_CXX_COMPILER_ID MATCHES "GNU|Clang|AppleClang")
+    target_compile_options(XXXXXX_ext PRIVATE -Wall -Wextra)
+endif()
+
+
 target_include_directories(XXXXXX_ext PRIVATE ${PYLMCF_INCLUDE_DIRS})
 
 install(TARGETS XXXXXX_ext LIBRARY DESTINATION XXXXXX)
